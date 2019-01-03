@@ -14,11 +14,23 @@ let listToInt = List.map int
 
 let add a b = a + b
 
-let solve () =
+let applyFreqChanges init changes =
     let reduced = 
+        changes
+        |> List.fold add init
+    reduced
+
+let rec recursiveSolve init changes (set : Set<int>) =
+    let newFreq = init + List.head changes
+    if set.Contains(newFreq) then
+        newFreq
+    else
+        recursiveSolve newFreq ((List.tail changes) @ [(List.head changes)]) (set.Add(newFreq))
+
+let solve () =
+    let changes = 
         "c1.txt"
         |> readFile
         |> Array.toList
         |> listToInt
-        |> List.reduce add
-    printfn "%A" reduced
+    recursiveSolve 0 changes Set.empty

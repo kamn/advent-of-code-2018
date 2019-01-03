@@ -5,7 +5,8 @@ open System
 module c1 =  Challenge1
 [<EntryPoint>]
 let main argv = 
-    c1.solve ()
+    let result = c1.solve ()
+    printfn "%A" result
     printfn "Press Enter to exit"
     Console.ReadLine() |> ignore
     0 // return an integer exit code
