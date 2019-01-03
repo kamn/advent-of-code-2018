@@ -3,17 +3,22 @@
 open System
 open System.IO
 
+let newlineChars = [|"\r\n"; "\n"; "\r"|]
+
 let readFile fileName =
     let text = File.ReadAllText(Environment.CurrentDirectory + "\\" + fileName)
-    let splitLines = text.Split([|"\r\n"; "\n"; "\r"|], StringSplitOptions.RemoveEmptyEntries)
+    let splitLines = text.Split(newlineChars, StringSplitOptions.RemoveEmptyEntries)
     splitLines
 
-let listToInt xs = 
-    List.map int xs
+let listToInt = List.map int
 
+let add a b = a + b
 
 let solve () =
-    let strData = readFile "c1.txt"
-    let intData = listToInt (strData |> Array.toList)
-    let reduced = intData |> List.reduce (fun r x -> r + x)
-    printf "%A" reduced
+    let reduced = 
+        "c1.txt"
+        |> readFile
+        |> Array.toList
+        |> listToInt
+        |> List.reduce add
+    printfn "%A" reduced
