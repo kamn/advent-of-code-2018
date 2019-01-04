@@ -3,9 +3,11 @@
 
 open System
 module c1 =  Challenge1
+module c2 =  Challenge2
+
 [<EntryPoint>]
 let main argv = 
-    let result = c1.solve ()
+    let result = c2.solve ()
     printfn "%A" result
     printfn "Press Enter to exit"
     Console.ReadLine() |> ignore
